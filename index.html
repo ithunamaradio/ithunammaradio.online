@@ -3,56 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ithu Namma Radio</title>
+    <title>Ithu Namma Radio - Tamil Stations</title>
     <style>
-        /* உங்கள் அதே பழைய அழகான ஸ்டைல் */
         body { 
             background-color: #0f0f0f; 
             color: white; 
-            text-align: center; 
-            font-family: Arial, sans-serif; 
-            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            margin: 0; padding: 20px;
+            text-align: center;
+        }
+        h1 { color: #ff3d00; text-transform: uppercase; letter-spacing: 2px; }
+        
+        /* ரேடியோ ஸ்டேஷன் கட்டங்கள் (Grid) */
+        .station-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .station-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .station-card:hover {
+            border-color: #ff3d00;
+            background: #252525;
+            transform: translateY(-5px);
+        }
+
+        .station-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .station-name {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* பிளேயர் பகுதி - கீழே ஒட்டிக்கொள்ளும் */
+        .footer-player {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            background: #111;
+            border-top: 2px solid #ff3d00;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
         }
-        h1 { color: #ff3d00; font-size: 35px; margin-bottom: 10px; text-transform: uppercase; }
-        p { color: #aaa; margin-bottom: 30px; font-size: 18px; }
-        .player-container { 
-            background: #1a1a1a; padding: 40px; border-radius: 20px; 
-            border: 2px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            width: 85%; max-width: 400px;
-        }
-        /* உங்கள் அதே பழைய ஆடியோ பிளேயர் டிசைன் */
+
         audio {
-            width: 100%; height: 50px;
-            filter: invert(1) hue-rotate(180deg) brightness(1.5);
-            outline: none;
+            width: 80%;
+            max-width: 500px;
+            filter: invert(1);
+        }
+
+        #current-playing {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #ff3d00;
         }
     </style>
 </head>
 <body>
 
     <h1>ITHU NAMMA RADIO</h1>
-    <p>Connecting Hearts through Music</p>
-    
-    <div class="player-container">
-        <audio id="radio" controls autoplay>
-            <source src="https://stream.zeno.fm/f3796366n68uv" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+    <p>Select your favorite station</p>
+
+    <div class="station-grid">
+        <div class="station-card" onclick="playRadio('Tamil Hits 24/7', 'https://stream.zeno.fm/f3796366n68uv')">
+            <span class="station-icon">🎵</span>
+            <span class="station-name">Tamil Hits</span>
+        </div>
+
+        <div class="station-card" onclick="playRadio('Hello FM Mix', 'https://uk7.internet-radio.com/proxy/radiotamil?mp=/live')">
+            <span class="station-icon">📻</span>
+            <span class="station-name">Hello FM</span>
+        </div>
+
+        <div class="station-card" onclick="playRadio('Ajith Special', 'song1.mp3')">
+            <span class="station-icon">⭐</span>
+            <span class="station-name">Ajith Special</span>
+        </div>
+        
+        <div class="station-card" onclick="playRadio('Old Gold Tamil', 'https://stream.zeno.fm/09689shv998uv')">
+            <span class="station-icon">📀</span>
+            <span class="station-name">Old Gold</span>
+        </div>
+    </div>
+
+    <div class="footer-player">
+        <div id="current-playing">Select a Station to Play</div>
+        <audio id="main-player" controls></audio>
     </div>
 
     <script>
-        // பக்கம் லோட் ஆனதும் ஆடியோவை இயக்கும் சிறிய முயற்சி
-        window.addEventListener('load', function() {
-            var audio = document.getElementById("radio");
-            audio.play().catch(function(error) {
-                console.log("பிரவுசர் பிளே பட்டனை அழுத்தச் சொல்கிறது.");
-            });
-        });
+        function playRadio(name, url) {
+            var player = document.getElementById('main-player');
+            var status = document.getElementById('current-playing');
+            
+            player.src = url;
+            player.play();
+            status.innerHTML = "Now Playing: " + name;
+        }
     </script>
 
 </body>
