@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ithu Namma Radio</title>
     <style>
+        /* உங்கள் அதே அழகான பழைய ஸ்டைல் */
         body { 
             background-color: #0f0f0f; 
             color: white; 
@@ -17,8 +18,8 @@
             justify-content: center;
             height: 100vh;
         }
-        h1 { color: #ff3d00; font-size: 35px; margin-bottom: 10px; text-transform: uppercase; }
-        p { color: #aaa; margin-bottom: 30px; font-size: 18px; }
+        h1 { color: #ff3d00; font-size: 35px; text-transform: uppercase; margin-bottom: 10px; }
+        p { color: #aaa; margin-bottom: 30px; }
         
         .player-container { 
             background: #1a1a1a; 
@@ -27,6 +28,7 @@
             border: 2px solid #333;
             width: 85%;
             max-width: 400px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
         }
         
         .play-btn {
@@ -40,8 +42,6 @@
             cursor: pointer;
             width: 100%;
         }
-        
-        #status { font-size: 14px; margin-top: 15px; color: #4caf50; }
     </style>
 </head>
 <body>
@@ -50,35 +50,28 @@
     <p>Connecting Hearts through Music</p>
     
     <div class="player-container">
-        <button id="playBtn" class="play-btn">START RADIO</button>
-        <p id="status">Status: Ready to Play</p>
+        <button id="playBtn" class="play-btn">PLAY MUSIC</button>
+        <p id="status" style="margin-top:15px; color:#555;">Status: Ready to Play</p>
     </div>
 
     <script>
-        // இது ஒரு பொதுவான தமிழ் வானொலி லிங்க்
-        var audio = new Audio("https://liveradio.v-s.dk:9122/stream"); 
+        // உங்கள் GitHub-ல் இருக்கும் பாடலை இது நேரடியாக எடுக்கும்
+        var audio = new Audio("song1.mp3"); 
         var btn = document.getElementById("playBtn");
-        var statusText = document.getElementById("status");
 
         btn.onclick = function() {
             if (audio.paused) {
                 audio.play();
-                btn.innerHTML = "STOP RADIO";
-                statusText.innerHTML = "Status: Playing Live...";
+                btn.innerHTML = "STOP MUSIC";
+                document.getElementById("status").innerHTML = "Now Playing: Your Own Song";
+                document.getElementById("status").style.color = "#4caf50";
             } else {
                 audio.pause();
-                btn.innerHTML = "START RADIO";
-                statusText.innerHTML = "Status: Paused";
+                btn.innerHTML = "PLAY MUSIC";
+                document.getElementById("status").innerHTML = "Paused";
+                document.getElementById("status").style.color = "#555";
             }
         };
-        
-        // லிங்க் வேலை செய்யவில்லை என்றால் தானாகச் சரி செய்யும்
-        audio.onerror = function() {
-            statusText.innerHTML = "Error: Trying to Reconnect...";
-            audio.src = "https://stream.zeno.fm/f3796366n68uv";
-            audio.load();
-        };
     </script>
-
 </body>
 </html>
