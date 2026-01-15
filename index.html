@@ -3,43 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ithu Namma Radio - Ajith Special</title>
+    <title>Ithu Namma Radio</title>
     <style>
+        /* உங்கள் விருப்பமான அதே பழைய ஸ்டைல் */
         body { 
-            background-color: #050505; 
-            color: #ff3d00; 
+            background-color: #0f0f0f; 
+            color: white; 
             text-align: center; 
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif; 
+            margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            margin: 0;
         }
-        .player-card {
-            background: #111;
-            padding: 40px;
-            border-radius: 25px;
-            border: 2px solid #ff3d00;
-            box-shadow: 0 0 30px rgba(255, 61, 0, 0.3);
-            width: 320px;
+        h1 { 
+            color: #ff3d00; 
+            font-size: 35px; 
+            margin-bottom: 10px; 
+            text-transform: uppercase;
         }
-        h1 { font-size: 26px; text-transform: uppercase; margin-bottom: 20px; }
-        audio { width: 100%; filter: invert(1); }
+        p { 
+            color: #aaa; 
+            margin-bottom: 30px; 
+            font-size: 18px;
+        }
+        .player-container { 
+            background: #1a1a1a; 
+            padding: 40px; 
+            border-radius: 20px; 
+            border: 2px solid #333;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            width: 85%;
+            max-width: 400px;
+        }
+        /* சுத்தமான கோடிங் மூலமான பிளேயர் */
+        audio {
+            width: 100%;
+            height: 50px;
+            filter: invert(1) hue-rotate(180deg) brightness(1.5);
+            outline: none;
+        }
+        .footer {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #444;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="player-card">
-        <h1>ITHU NAMMA RADIO</h1>
-        <p style="color: #888;">Ajith Special Playback</p>
-        
-        <audio controls autoplay>
-            <source src="உங்களின்_அஜித்_பாடல்_லிங்க்" type="audio/mpeg">
+    <h1>ITHU NAMMA RADIO</h1>
+    <p>Connecting Hearts through Music</p>
+    
+    <div class="player-container">
+        <audio controls autoplay id="radio">
+            <source src="https://ice6.securenetsystems.net/SOUTHRA" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
     </div>
 
-</body>
-</html>
+    <div class="footer">© 2026 ITHU NAMMA RADIO | LIFELONG FREE</div>
+
+    <script>
+        // சில பிரவுசர்களில் தானாக பிளே ஆகாது, அதற்காக இந்த சிறு கோடிங்
+        window.addEventListener('load', function() {
+            var audio = document.getElementById("radio");
+            audio.play().catch(function(error) {
+                console.log("பிரவுசர் பிளே செய்ய அனுமதி கேட்கிறது. பிளே பட்டனை
