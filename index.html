@@ -1,22 +1,54 @@
-<div class="player-container">
-        <audio id="radioPlayer" controls>
-            <source src="https://cors-anywhere.herokuapp.com/https://ice6.securenetsystems.net/SOUTHRA" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </div>
-
-    <script>
-        // பிளேயரை வலுக்கட்டாயமாக வேலை செய்ய வைக்கும் சிறிய கோடிங்
-        var player = document.getElementById('radioPlayer');
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ithu Namma Radio</title>
+    <style>
+        /* உங்கள் அதே பழைய ஸ்டைல் */
+        body { 
+            background-color: #0f0f0f; 
+            color: white; 
+            text-align: center; 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 { color: #ff3d00; font-size: 35px; text-transform: uppercase; margin-bottom: 10px; }
+        p { color: #aaa; margin-bottom: 30px; }
         
-        // பக்கம் லோட் ஆனதும் ஆடியோவை தயார் நிலையில் வைக்கும்
-        window.onload = function() {
-            player.load();
-        };
+        .player-container { 
+            background: #1a1a1a; 
+            padding: 40px; 
+            border-radius: 20px; 
+            border: 2px solid #333;
+            width: 85%;
+            max-width: 400px;
+        }
 
-        // பிளேயர் பிழையைக் காட்டினால் இந்த மாற்று லிங்க்-ஐ எடுக்கும்
-        player.onerror = function() {
-            player.src = "https://ice6.securenetsystems.net/SOUTHRA";
-            player.load();
-        };
-    </script>
+        /* YouTube வீடியோவை மறைத்து ஆடியோ மட்டும் கேட்கச் செய்யும் வசதி */
+        .video-container {
+            display: none; /* வீடியோ தெரியாது, சத்தம் மட்டும் கேட்கும் */
+        }
+
+        .play-btn {
+            background-color: #ff3d00;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>ITHU NAMMA RADIO</h1>
+    <p>Connecting Hearts
