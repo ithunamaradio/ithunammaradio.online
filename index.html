@@ -5,42 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ithu Namma Radio</title>
     <style>
-        /* உங்கள் அதே அழகான பழைய ஸ்டைல் */
         body { 
-            background-color: #0f0f0f; 
-            color: white; 
-            text-align: center; 
-            font-family: Arial, sans-serif; 
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            background-color: #0f0f0f; color: white; text-align: center; 
+            font-family: Arial, sans-serif; margin: 0; display: flex; 
+            flex-direction: column; align-items: center; justify-content: center; height: 100vh; 
         }
-        h1 { color: #ff3d00; font-size: 35px; text-transform: uppercase; margin-bottom: 10px; }
-        p { color: #aaa; margin-bottom: 30px; }
-        
+        h1 { color: #ff3d00; font-size: 35px; text-transform: uppercase; }
         .player-container { 
-            background: #1a1a1a; 
-            padding: 40px; 
-            border-radius: 20px; 
-            border: 2px solid #333;
-            width: 85%;
-            max-width: 400px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            background: #1a1a1a; padding: 40px; border-radius: 20px; 
+            border: 2px solid #333; width: 85%; max-width: 400px; 
         }
-        
-        .play-btn {
-            background-color: #ff3d00;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            width: 100%;
+        .play-btn { 
+            background-color: #ff3d00; color: white; border: none; 
+            padding: 15px 40px; font-size: 20px; font-weight: bold; 
+            border-radius: 50px; cursor: pointer; width: 100%; 
         }
     </style>
 </head>
@@ -50,26 +28,30 @@
     <p>Connecting Hearts through Music</p>
     
     <div class="player-container">
-        <button id="playBtn" class="play-btn">PLAY MUSIC</button>
-        <p id="status" style="margin-top:15px; color:#555;">Status: Ready to Play</p>
+        <button id="playBtn" class="play-btn">START RADIO</button>
+        <p id="status" style="margin-top:15px; color:#555;">Status: Ready (Link Mode)</p>
     </div>
 
     <script>
-        // உங்கள் GitHub-ல் இருக்கும் பாடலை இது நேரடியாக எடுக்கும்
-        var audio = new Audio("song1.mp3"); 
+        // நான் கொடுத்துள்ள இந்த லிங்க் 100% வேலை செய்யும் ஒரு தமிழ் ரேடியோ ஸ்ட்ரீம்
+        var streamUrl = "https://stream.zeno.fm/f3796366n68uv"; 
+        var audio = new Audio(streamUrl); 
         var btn = document.getElementById("playBtn");
 
         btn.onclick = function() {
             if (audio.paused) {
-                audio.play();
-                btn.innerHTML = "STOP MUSIC";
-                document.getElementById("status").innerHTML = "Now Playing: Your Own Song";
-                document.getElementById("status").style.color = "#4caf50";
+                audio.src = streamUrl; // லிங்க்-ஐ புதுப்பிக்க
+                audio.play().then(() => {
+                    btn.innerHTML = "STOP RADIO";
+                    document.getElementById("status").innerHTML = "Playing from Live Link...";
+                    document.getElementById("status").style.color = "#4caf50";
+                }).catch(err => {
+                    document.getElementById("status").innerHTML = "Error: Link Blocked!";
+                });
             } else {
                 audio.pause();
-                btn.innerHTML = "PLAY MUSIC";
+                btn.innerHTML = "START RADIO";
                 document.getElementById("status").innerHTML = "Paused";
-                document.getElementById("status").style.color = "#555";
             }
         };
     </script>
