@@ -3,75 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ithu Namma Radio</title>
+    <title>Ithu Namma Radio - Ajith Special</title>
     <style>
         body { 
-            background-color: #0f0f0f; 
-            color: white; 
+            background-color: #050505; 
+            color: #ff3d00; 
             text-align: center; 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            margin: 0;
+            font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            margin: 0;
         }
-        h1 { color: #ff3d00; font-size: 35px; margin-bottom: 10px; }
-        p { color: #aaa; margin-bottom: 30px; }
-        
-        .player-container { 
-            background: #1a1a1a; 
-            padding: 30px; 
-            border-radius: 20px; 
-            border: 1px solid #333;
-            width: 80%;
-            max-width: 400px;
+        .player-card {
+            background: #111;
+            padding: 40px;
+            border-radius: 25px;
+            border: 2px solid #ff3d00;
+            box-shadow: 0 0 30px rgba(255, 61, 0, 0.3);
+            width: 320px;
         }
-
-        /* நவீன பட்டன் ஸ்டைல் */
-        .play-btn {
-            background-color: #ff3d00;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 61, 0, 0.4);
-        }
-
-        .play-btn:active { transform: scale(0.95); }
+        h1 { font-size: 26px; text-transform: uppercase; margin-bottom: 20px; }
+        audio { width: 100%; filter: invert(1); }
     </style>
 </head>
 <body>
 
-    <h1>ITHU NAMMA RADIO</h1>
-    <p>Connecting Hearts through Music</p>
-    
-    <div class="player-container">
-        <button id="playBtn" class="play-btn">PLAY RADIO</button>
+    <div class="player-card">
+        <h1>ITHU NAMMA RADIO</h1>
+        <p style="color: #888;">Ajith Special Playback</p>
+        
+        <audio controls autoplay>
+            <source src="உங்களின்_அஜித்_பாடல்_லிங்க்" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
     </div>
-
-    <script>
-        // கோடிங் மூலமாக ஆடியோவை இயக்குதல்
-        var audio = new Audio("https://ice6.securenetsystems.net/NAMMARAD");
-        var isPlaying = false;
-        var btn = document.getElementById("playBtn");
-
-        btn.onclick = function() {
-            if (isPlaying) {
-                audio.pause();
-                btn.innerHTML = "PLAY RADIO";
-                isPlaying = false;
-            } else {
-                audio.play();
-                btn.innerHTML = "PAUSE RADIO";
-                isPlaying = true;
-            }
-        };
-    </script>
 
 </body>
 </html>
