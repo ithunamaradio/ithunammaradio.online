@@ -5,50 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ithu Namma Radio</title>
     <style>
-        body { background-color: #0f0f0f; color: white; text-align: center; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-        h1 { color: #ff3d00; font-size: 35px; text-transform: uppercase; margin-bottom: 5px; }
-        .player-container { background: #1a1a1a; padding: 40px; border-radius: 20px; border: 2px solid #333; width: 85%; max-width: 400px; box-shadow: 0 0 20px rgba(255, 61, 0, 0.2); }
-        .play-btn { background-color: #ff3d00; color: white; border: none; padding: 15px 40px; font-size: 20px; font-weight: bold; border-radius: 50px; cursor: pointer; width: 100%; transition: 0.3s; }
-        .play-btn:hover { background-color: #e63600; }
-        #status { margin-top: 15px; color: #555; font-size: 14px; }
+        /* உங்கள் அதே பழைய அழகான ஸ்டைல் */
+        body { 
+            background-color: #0f0f0f; 
+            color: white; 
+            text-align: center; 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 { color: #ff3d00; font-size: 35px; margin-bottom: 10px; text-transform: uppercase; }
+        p { color: #aaa; margin-bottom: 30px; font-size: 18px; }
+        .player-container { 
+            background: #1a1a1a; padding: 40px; border-radius: 20px; 
+            border: 2px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            width: 85%; max-width: 400px;
+        }
+        /* உங்கள் அதே பழைய ஆடியோ பிளேயர் டிசைன் */
+        audio {
+            width: 100%; height: 50px;
+            filter: invert(1) hue-rotate(180deg) brightness(1.5);
+            outline: none;
+        }
     </style>
 </head>
 <body>
 
     <h1>ITHU NAMMA RADIO</h1>
-    <p style="color:#888; margin-bottom: 30px;">Connecting Hearts</p>
+    <p>Connecting Hearts through Music</p>
     
     <div class="player-container">
-        <button id="playBtn" class="play-btn">START RADIO</button>
-        <p id="status">Status: Ready</p>
+        <audio id="radio" controls autoplay>
+            <source src="https://stream.zeno.fm/f3796366n68uv" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
     </div>
 
     <script>
-        // இது ஒரு நேரடி 'Secure' தமிழ் ரேடியோ லிங்க்
-        var streamUrl = "https://uk7.internet-radio.com/proxy/radiotamil?mp=/live";
-        var audio = new Audio();
-        var btn = document.getElementById("playBtn");
-        var statusTxt = document.getElementById("status");
-
-        btn.onclick = function() {
-            if (audio.paused) {
-                audio.src = streamUrl; // லிங்க்-ஐ நேரடியாக ஏற்றுகிறது
-                audio.load();
-                audio.play().then(() => {
-                    btn.innerHTML = "STOP RADIO";
-                    statusTxt.innerHTML = "● Playing Tamil Live...";
-                    statusTxt.style.color = "#4caf50";
-                }).catch(err => {
-                    statusTxt.innerHTML = "Error: Click again to connect";
-                });
-            } else {
-                audio.pause();
-                audio.src = ""; // இணைப்பைத் துண்டிக்க
-                btn.innerHTML = "START RADIO";
-                statusTxt.innerHTML = "Paused";
-                statusTxt.style.color = "#555";
-            }
-        };
+        // பக்கம் லோட் ஆனதும் ஆடியோவை இயக்கும் சிறிய முயற்சி
+        window.addEventListener('load', function() {
+            var audio = document.getElementById("radio");
+            audio.play().catch(function(error) {
+                console.log("பிரவுசர் பிளே பட்டனை அழுத்தச் சொல்கிறது.");
+            });
+        });
     </script>
+
 </body>
 </html>
