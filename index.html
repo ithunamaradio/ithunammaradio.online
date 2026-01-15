@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ithu Namma Radio</title>
     <style>
-        /* நீங்கள் விரும்பிய அதே பழைய ஸ்டைல் */
         body { 
             background-color: #0f0f0f; 
             color: white; 
@@ -18,38 +17,31 @@
             justify-content: center;
             height: 100vh;
         }
-        h1 { 
-            color: #ff3d00; 
-            font-size: 35px; 
-            margin-bottom: 10px; 
-            text-transform: uppercase;
-        }
-        p { 
-            color: #aaa; 
-            margin-bottom: 30px; 
-            font-size: 18px;
-        }
+        h1 { color: #ff3d00; font-size: 35px; margin-bottom: 10px; text-transform: uppercase; }
+        p { color: #aaa; margin-bottom: 30px; font-size: 18px; }
+        
         .player-container { 
             background: #1a1a1a; 
             padding: 40px; 
             border-radius: 20px; 
             border: 2px solid #333;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
             width: 85%;
             max-width: 400px;
         }
-        /* சுத்தமான ஆடியோ பிளேயர் */
-        audio {
+        
+        .play-btn {
+            background-color: #ff3d00;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
             width: 100%;
-            height: 50px;
-            filter: invert(1); /* கருப்பு பின்னணிக்கு ஏற்ற ஸ்டைல் */
-            outline: none;
         }
-        .footer {
-            margin-top: 25px;
-            font-size: 12px;
-            color: #444;
-        }
+        
+        #status { font-size: 14px; margin-top: 15px; color: #4caf50; }
     </style>
 </head>
 <body>
@@ -58,13 +50,35 @@
     <p>Connecting Hearts through Music</p>
     
     <div class="player-container">
-        <audio controls autoplay id="radio">
-            <source src="https://ice6.securenetsystems.net/TAMIL" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+        <button id="playBtn" class="play-btn">START RADIO</button>
+        <p id="status">Status: Ready to Play</p>
     </div>
 
-    <div class="footer">© 2026 ITHU NAMMA RADIO | LIFELONG FREE</div>
+    <script>
+        // இது ஒரு பொதுவான தமிழ் வானொலி லிங்க்
+        var audio = new Audio("https://liveradio.v-s.dk:9122/stream"); 
+        var btn = document.getElementById("playBtn");
+        var statusText = document.getElementById("status");
+
+        btn.onclick = function() {
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = "STOP RADIO";
+                statusText.innerHTML = "Status: Playing Live...";
+            } else {
+                audio.pause();
+                btn.innerHTML = "START RADIO";
+                statusText.innerHTML = "Status: Paused";
+            }
+        };
+        
+        // லிங்க் வேலை செய்யவில்லை என்றால் தானாகச் சரி செய்யும்
+        audio.onerror = function() {
+            statusText.innerHTML = "Error: Trying to Reconnect...";
+            audio.src = "https://stream.zeno.fm/f3796366n68uv";
+            audio.load();
+        };
+    </script>
 
 </body>
 </html>
