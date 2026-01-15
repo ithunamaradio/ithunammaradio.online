@@ -5,137 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ithu Namma Radio | இது நம்ம ரேடியோ</title>
     <style>
-        /* முழு பக்கத்திற்கான வடிவமைப்பு */
         body {
-            background: radial-gradient(circle, #1e1e1e, #000000);
-            color: white;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
+            background: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            overflow: hidden;
+            margin: 0;
         }
-
-        /* பிளேயர் கார்டு வடிவமைப்பு */
-        .player-box {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
-            width: 350px;
-            transition: transform 0.3s ease;
-        }
-
-        .player-box:hover {
-            transform: scale(1.02);
-        }
-
-        /* லோகோ பகுதி (தற்காலிகமாக ஒரு வட்டம்) */
-        .logo-circle {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(45deg, #ff3d00, #ff9100);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 50px;
-            font-weight: bold;
-            box-shadow: 0 0 20px rgba(255, 61, 0, 0.5);
-        }
-
-        h1 {
-            font-size: 24px;
-            margin: 10px 0;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .tagline {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
-
-        /* நேரலை அடையாளம் */
-        .live-indicator {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(255, 0, 0, 0.2);
-            padding: 5px 15px;
+        .player-card {
+            background: #111;
+            border: 2px solid #ff3d00;
             border-radius: 20px;
-            color: #ff4444;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 20px;
+            padding: 40px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 0 20px rgba(255, 61, 0, 0.4);
         }
-
-        .dot {
-            height: 8px;
-            width: 8px;
-            background-color: #ff4444;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
-            animation: blink 1.5s infinite;
-        }
-
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 1; }
-        }
-
-        /* ஆடியோ பிளேயர் வடிவமைப்பு */
+        h1 { color: #ff3d00; margin-bottom: 5px; }
+        p { color: #888; font-size: 14px; margin-bottom: 25px; }
+        
+        /* சுத்தமான கோடிங் பிளேயர் */
         audio {
             width: 100%;
-            height: 45px;
-            filter: invert(1) hue-rotate(180deg) brightness(1.2);
             outline: none;
-        }
-
-        .footer-text {
-            margin-top: 30px;
-            font-size: 11px;
-            color: #444;
-            letter-spacing: 1px;
+            filter: invert(1);
         }
     </style>
 </head>
 <body>
 
-    <div class="player-box">
-        <div class="live-indicator">
-            <span class="dot"></span> LIVE
-        </div>
-
-        <div class="logo-circle">📻</div>
-
+    <div class="player-card">
         <h1>ITHU NAMMA RADIO</h1>
-        <p class="tagline">Connecting Hearts through Music</p>
+        <p>24/7 தனித்துவமான இசைப் பயணம்</p>
 
-        <audio id="radio" controls>
-            <source src="http://shaincast.caster.fm:47864/listen.mp3?auth=1" type="audio/mpeg">
+        <audio id="myRadio" controls autoplay>
+            <source src="உங்களின்_லிங்க்_இங்கே" type="audio/mpeg">
             உங்கள் பிரவுசர் இதை ஆதரிக்கவில்லை.
         </audio>
-
-        <div class="footer-text">© 2026 ITHU NAMMA RADIO | LIFELONG FREE</div>
     </div>
-
-    <script>
-        // ஆட்டோமேட்டிக்காக பிளே செய்ய முயற்சிக்கும் குறியீடு
-        window.addEventListener('load', function() {
-            var audio = document.getElementById("radio");
-            audio.volume = 0.8;
-            // பிரவுசர் அனுமதித்தால் மட்டுமே ஆட்டோ பிளே ஆகும்
-        });
-    </script>
 
 </body>
 </html>
