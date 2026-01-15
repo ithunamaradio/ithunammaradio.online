@@ -23,32 +23,36 @@
         
         .player-container { 
             background: #1a1a1a; 
-            padding: 40px; 
+            padding: 20px; 
             border-radius: 20px; 
             border: 2px solid #333;
-            width: 85%;
-            max-width: 400px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
         }
 
-        /* YouTube வீடியோவை மறைத்து ஆடியோ மட்டும் கேட்கச் செய்யும் வசதி */
-        .video-container {
-            display: none; /* வீடியோ தெரியாது, சத்தம் மட்டும் கேட்கும் */
-        }
-
-        .play-btn {
-            background-color: #ff3d00;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            width: 100%;
+        /* YouTube-ஐ சிறியதாக அழகாகக் காட்ட */
+        iframe {
+            border-radius: 15px;
+            border: 1px solid #ff3d00;
         }
     </style>
 </head>
 <body>
 
     <h1>ITHU NAMMA RADIO</h1>
-    <p>Connecting Hearts
+    <p>Connecting Hearts through Music</p>
+    
+    <div class="player-container">
+        <iframe width="100%" height="250" 
+            src="https://www.youtube.com/embed/4P3IGBsySSA?autoplay=1" 
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <p style="margin-top:20px; font-size:12px; color:#444;">Powered by Ithu Namma Radio</p>
+
+</body>
+</html>
